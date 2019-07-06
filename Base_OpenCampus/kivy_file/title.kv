@@ -1,6 +1,9 @@
 #タイトル画面
 #kvファイルでのクラス継承のための記述
-<Title@FloatLayout>:
+<Title>:
+
+    Widget:
+        on_size: root.Size_Change()
 
     #テキスト
     Label:
@@ -22,6 +25,7 @@
     Button:
         #on_press: ボタンを押した時の処理
         #アプリ終了
+        id: btn1
         on_press: app.root_window.close()
         pos_hint: {"center_x":0.5,"center_y":0.1}
         text:   "おわり"
@@ -32,6 +36,7 @@
     Button:
         #change_disp: mainで定義した画面切り替え。
         #ゲーム画面に遷移
+        id: btn2
         on_press: app.root.change_disp_game()
         pos_hint: {"center_x":0.5,"center_y":0.23}
         text:   "ゲームスタート"
@@ -41,6 +46,7 @@
 
     Button:
         #遊び方説明画面へ遷移
+        id: btn3
         on_press: app.root.change_disp_asobikata()
         pos_hint: {"center_x":0.5,"center_y":0.36}
         text:   "あそびかた"
@@ -51,4 +57,4 @@
     Image:
         source: "./data/daimei.jpg"
         pos_hint: {"center_x":0.44,"center_y":0.7}
-        size_hint: 0.73, 0.73
+        size_hint: 0.7, 0.58

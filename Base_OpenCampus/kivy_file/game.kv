@@ -1,4 +1,8 @@
 <Game>:
+
+    Widget:
+        on_size: root.Size_Change()
+
     Label:
         canvas.before:
             Color:
@@ -8,22 +12,23 @@
                 size: self.size
     Camera:
         pos_hint: {"center_x":0.335,"center_y":0.57}
-        id: camera
-        size_hint : 0.76, 0.432
+        id: Camera
+        size_hint : 0.7, 0.432
         resolution: (1920, 1080)
         play: True 
 
     Image:
         source: "./data/setsumei2.jpg"
-        pos_hint: {"center_x":0.85,"center_y":0.85}
-        size_hint: 0.37, 0.37
+        pos_hint: {"center_x":0.835,"center_y":0.85}
+        size_hint: 0.3, 0.37
 
     Image:
         source: "./data/odai1.jpg"
-        pos_hint: {"center_x":0.835,"center_y":0.6}
-        size_hint: 0.43, 0.43
+        pos_hint: {"center_x":0.835,"center_y":0.55}
+        size_hint: 0.3, 0.4
 
     Button:
+        id: btn1
         pos_hint: {"center_x":0.5,"center_y":0.1}
         text:   "かんせい！"
         background_color: (2.9, 0.3, 0, 0.9)

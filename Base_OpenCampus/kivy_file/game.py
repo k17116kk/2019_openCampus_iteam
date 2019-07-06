@@ -8,17 +8,28 @@ import cv2
 
 class Game(FloatLayout):
 
+    flag = False
+
+    def Size_Change(self):
+        width = self.width
+        height = self.height
+        
+        for k in self.ids:
+            self.ids[k].font_size = width * 0.03
+
     def button_press(self):
 
         path = "./data/"
         #画像読み込み
         pic = cv2.imread("./data/tsumiki.png",1)
+        camera = self.ids['Camera']
+        camera.export_to_png("./data/img.png")
         #トリミング
-        tri = pic[60:456,4:532]
+        #tri = pic[60:456,4:532]
         #保存
-        cv2.imwrite(path+"tri.jpg",tri)
-        img = cv2.imread(path+"tri.jpg")
-        cv2.imwrite(path+"img.jpg",img)
+        #cv2.imwrite(path+"tri.png",tri)
+        #img = cv2.imread(path+"tri.jpg")
+        #cv2.imwrite(path+"img.jpg",img)
 
         i = findrectHSV2.hantei()
 
@@ -27,6 +38,7 @@ class Game(FloatLayout):
 
         if (i >= 5):
             #print ("正解!!")
+            flag = True;
             hantei = cv2.imread(path+"seikai.jpg")
             cv2.imwrite(path+"hantei.jpg",hantei)
 
@@ -35,3 +47,5 @@ class Game(FloatLayout):
             hantei = cv2.imread(path+"zannen.jpg")
             cv2.imwrite(path+"hantei.jpg",hantei)
             #MainRoot.change_disp_title()
+
+    

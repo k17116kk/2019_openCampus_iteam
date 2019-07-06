@@ -114,7 +114,7 @@ def find_rect_of_target_color6(image):
 #if __name__ == "__main__":
 def hantei():
     #img = cv2.imread('./back.jpg')
-    img = cv2.imread('./data/img.jpg')
+    img = cv2.imread('./data/img.png')
 
     #赤
     rects1 = find_rect_of_target_color1(img)

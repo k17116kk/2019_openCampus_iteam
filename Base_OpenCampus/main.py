@@ -25,6 +25,7 @@ Builder.load_file('./kivy_file/zannen.kv')
 #game.pyをインポートする
 from kivy_file.game import *
 from kivy_file.hantei import *
+from kivy_file.title import *
 #from python.findrectHSV2 import *
 
 class MainRoot(FloatLayout):
@@ -66,6 +67,7 @@ class MainRoot(FloatLayout):
     def change_disp_zannen(self):
         self.clear_widgets()
         self.add_widget(self.zannen)
+        
 
 
 class MainApp(App):
