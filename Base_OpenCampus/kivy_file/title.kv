@@ -1,0 +1,54 @@
+#タイトル画面
+#kvファイルでのクラス継承のための記述
+<Title@FloatLayout>:
+
+    #テキスト
+    Label:
+        #pos_hint: ウィンドウの縦、横の全長を1として座標指定。左上が(x,y)=(0,0)
+        pos_hint: {"center_x":0.5,"center_y":0.7}
+        text:   ""
+        #色指定 R,G,B,透明度。0~1の間で指定。
+        color:  0.7,0.6,0.2,1
+        font_size: 60
+        #背景設定
+        canvas.before:
+            Color:
+                rgba: 1,1,1,1
+            Rectangle:
+                pos: 0,1
+                size: self.size
+
+    #ボタン
+    Button:
+        #on_press: ボタンを押した時の処理
+        #アプリ終了
+        on_press: app.root_window.close()
+        pos_hint: {"center_x":0.5,"center_y":0.1}
+        text:   "おわり"
+        background_color: (0.2, 0.6, 1.4, 0.9)
+        font_size:  30
+        size_hint: 0.3, 0.1
+
+    Button:
+        #change_disp: mainで定義した画面切り替え。
+        #ゲーム画面に遷移
+        on_press: app.root.change_disp_game()
+        pos_hint: {"center_x":0.5,"center_y":0.23}
+        text:   "ゲームスタート"
+        background_color: (2.9, 0.3, 0, 0.9)
+        font_size:  30
+        size_hint: 0.3, 0.1
+
+    Button:
+        #遊び方説明画面へ遷移
+        on_press: app.root.change_disp_asobikata()
+        pos_hint: {"center_x":0.5,"center_y":0.36}
+        text:   "あそびかた"
+        background_color: (3, 1.5, 0.3, 1)
+        font_size:  30
+        size_hint: 0.3, 0.1
+
+    Image:
+        source: "./data/daimei.jpg"
+        pos_hint: {"center_x":0.44,"center_y":0.7}
+        size_hint: 0.73, 0.73

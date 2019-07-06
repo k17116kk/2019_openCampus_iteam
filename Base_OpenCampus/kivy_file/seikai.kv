@@ -1,0 +1,27 @@
+<Hantei>:
+
+    Label:
+        pos_hint: {"center_x":0.5,"center_y":0.7}
+        text:   ""
+        color:  0.7,0.6,0.2,1
+        font_size: 60
+        #背景設定
+        canvas.before:
+            Color:
+                rgba: 1,1,1,1
+            Rectangle:
+                pos: 0,1
+                size: self.size
+
+    Image:
+        source: "./data/hantei.jpg"
+        pos_hint: {"center_x":0.5,"center_y":0.6}
+        size_hint: 0.7, 0.7
+
+    Button:
+        on_press: app.root.change_disp_title()
+        pos_hint: {"center_x":0.5,"center_y":0.13}
+        text:   " タイトルへ"
+        background_color: (1.0, 0.0, 0.0, 1.0)
+        font_size:  30
+        size_hint: 0.3, 0.1

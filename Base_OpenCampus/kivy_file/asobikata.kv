@@ -1,0 +1,38 @@
+
+#遊び方説明画面
+<Asobikata@FloatLayout>:
+
+    Label:
+        pos_hint: {"center_x":0.264,"center_y":0.5}
+        text:   ""
+        color:  0.2,0.2,0.2,1
+        font_size: 32
+        canvas.before:
+            Color:
+                rgba: 1,0,1.0,1.0,1
+            Rectangle:
+                pos: 0,1
+                size: self.size
+
+    Button:
+        on_press: app.root.change_disp_title()
+        pos_hint: {"center_x":0.5,"center_y":0.13}
+        text:   "もどる"
+        background_color: (3, 1.5, 0.3, 1)
+        font_size:  30
+        size_hint: 0.3, 0.1
+
+    Image:
+        source: "./data/ゲーム画面.jpg"
+        pos_hint: {"center_x":0.735,"center_y":0.5}
+        size_hint: 0.54, 0.54
+
+    Image:
+        source: "./data/setsumei1.jpg"
+        pos_hint: {"center_x":0.5,"center_y":0.87}
+        size_hint: 0.8, 0.8
+
+    Image:
+        source: "./data/setsumei.jpg"
+        pos_hint: {"center_x":0.25,"center_y":0.5}
+        size_hint: 0.5, 0.5

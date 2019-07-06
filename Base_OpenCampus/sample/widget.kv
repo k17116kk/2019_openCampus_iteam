@@ -1,0 +1,159 @@
+
+#タイトル画面
+<TitleScreen>:
+    #テキスト
+    Label:
+        pos_hint: {"center_x":0.5,"center_y":0.7}
+        text:   "つみきゲーム"
+        color:  0.7,0.6,0.2,1
+        font_size: 60
+        canvas.before:
+            Color:
+                rgba: 1,1,1,1
+            Rectangle:
+                pos: 0,1
+                size: self.size
+
+    #ボタン
+    Button:
+        on_press: app.root_window.close()
+        pos_hint: {"center_x":0.5,"center_y":0.13}
+        text:   "おわり"
+        #background_color: (1.0, 0.0, 0.0, 1.0)
+        font_size:  30
+        size_hint: 0.3, 0.1
+
+    Button:
+        on_press: root.manager.current = "game"
+        pos_hint: {"center_x":0.5,"center_y":0.27}
+        text:   "ゲームスタート"
+        background_color: (1.0, 0.0, 0.0, 1.0)
+        font_size:  30
+        size_hint: 0.3, 0.1
+
+    Button:
+        on_press: root.manager.current = "asobikata"
+        pos_hint: {"center_x":0.5,"center_y":0.41}
+        text:   "あそびかた"
+        font_size:  30
+        size_hint: 0.3, 0.1
+
+#遊び方説明画面
+<AsobikataScreen>:
+    Label:
+        pos_hint: {"center_x":0.25,"center_y":0.5}
+        text:   "ゲームをはじめると\n右のような画面が\n表示されるよ！\nつみきがうつった画像が\n表示されるから\nそれと同じ形のつみきを\n組み立てよう！\n出来上がったら\nかんせいボタンを押そう！"
+        color:  0.2,0.2,0.2,1
+        font_size: 32
+        canvas.before:
+            Color:
+                rgba: 1,0,1.0,1.0,1
+            Rectangle:
+                pos: 0,1
+                size: self.size
+    Label:
+        pos_hint: {"center_x":0.5,"center_y":0.87}
+        text:   "あそびかたの説明をするよ！"
+        color:  0.95,0.3,0.07,1.0
+        font_size: 42
+    Button:
+        on_press: root.manager.current ="title"
+        pos_hint: {"center_x":0.5,"center_y":0.13}
+        text:   "おわり"
+        background_color: (1.0, 0.0, 0.0, 1.0)
+        font_size:  30
+        size_hint: 0.3, 0.1
+
+    Image:
+        source: "ゲーム画面.jpg"
+        pos_hint: {"center_x":0.75,"center_y":0.5}
+        size_hint: 0.5, 0.5
+
+<GameScreen>:
+    Label:
+        canvas.before:
+            Color:
+                rgba: 1,1,1,1
+            Rectangle:
+                pos: 0,1
+                size: self.size
+    Camera:
+        pos_hint: {"center_x":0.335,"center_y":0.57}
+        id: camera
+        resolution: (528, 406)
+        play: True
+
+    Label:
+        pos_hint: {"center_x":0.35,"center_y":0.95}
+        text:   "第一問"
+        color:  0.7,0.6,0.2,1
+        font_size: 40
+
+    Label:
+        pos_hint: {"center_x":0.835,"center_y":0.85}
+        text:   "これを組み立てよう!"
+        color:  0.7,0.6,0.2,1
+        font_size: 25
+
+    Image:
+        source: "積み木1.jpg"
+        pos_hint: {"center_x":0.835,"center_y":0.6}
+        size_hint: 0.43, 0.43
+
+    Button:
+        pos_hint: {"center_x":0.5,"center_y":0.1}
+        text:   "かんせい！"
+        background_color: (1.0, 0.0, 0.0, 1.0)
+        font_size:  40
+        size_hint: 0.39, 0.13
+        on_press: root.export_to_png('/Users/k16104kk/MMLAB/後期セミナー/kivy/tsumiki.png')
+
+<SeikaiScreen>:
+    Label:
+        pos_hint: {"center_x":0.5,"center_y":0.65}
+        text:   "せいかい！"
+        color:  0.7,0.6,0.2,1
+        font_size: 70
+        canvas.before:
+            Color:
+                rgba: 1,1,1,1
+            Rectangle:
+                pos: 0,1
+                size: self.size
+
+    Button:
+        on_press: root.manager.current ="clear"
+        pos_hint: {"center_x":0.3,"center_y":0.2}
+        text:   "つぎのもんだい"
+        background_color: (1.0, 0.0, 0.0, 1.0)
+        font_size:  30
+        size_hint: 0.3, 0.1
+
+    Button:
+        on_press: root.manager.current ="title"
+        pos_hint: {"center_x":0.7,"center_y":0.2}
+        text:   "タイトルへもどる"
+        background_color: (1.0, 0.0, 0.0, 1.0)
+        font_size:  30
+        size_hint: 0.3, 0.1
+
+<ClearScreen>:
+    Label:
+        pos_hint: {"center_x":0.7,"center_y":0.5}
+        text:   "ゲームクリア！"
+        color:  0.7,0.6,0.2,1
+        font_size: 60
+        canvas.before:
+            Color:
+                rgba: 1,1,1,1
+            Rectangle:
+                pos: 0,1
+                size: self.size
+
+    Button:
+        on_press: root.manager.current ="title"
+        pos_hint: {"center_x":0.3,"center_y":0.2}
+        text:   "タイトルへもどる"
+        background_color: (1.0, 0.0, 0.0, 1.0)
+        font_size:  30
+        size_hint: 0.3, 0.1

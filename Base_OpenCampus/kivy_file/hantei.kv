@@ -1,0 +1,44 @@
+<Hantei>:
+    Label:
+        pos_hint: {"center_x":0.5,"center_y":0.7}
+        text:   ""
+        color:  0.7,0.6,0.2,1
+        font_size: 60
+        #背景設定
+        canvas.before:
+            Color:
+                rgba: 1,1,1,1
+            Rectangle:
+                pos: 0,1
+                size: self.size
+
+    Image:
+        source: root.source
+        pos_hint: {"center_x":0.5,"center_y":0.68}
+        size_hint: 1.3, 1.3
+
+    Button:
+        on_press: root.buttonClicked()
+        pos_hint: {"center_x":0.5,"center_y":0.36}
+        text:   "ここを押してね！"
+        background_color: (2.9, 0.3, 0, 0.9)
+        font_size:  28
+        size_hint: 0.3, 0.1
+
+    Button:
+        on_press: app.root.change_disp_game()
+        on_press: root.buttonClicked2()
+        pos_hint: {"center_x":0.5,"center_y":0.23}
+        text:   "もう一度"
+        background_color: (3, 1.5, 0.3, 1)
+        font_size:  28
+        size_hint: 0.3, 0.1
+
+    Button:
+        on_press: app.root.change_disp_title()
+        on_press: root.buttonClicked2()
+        pos_hint: {"center_x":0.5,"center_y":0.1}
+        text:   " タイトルへ"
+        background_color: (0.2, 0.6, 1.4, 0.9)
+        font_size:  30
+        size_hint: 0.3, 0.1

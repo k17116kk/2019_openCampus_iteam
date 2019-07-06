@@ -1,0 +1,34 @@
+<Game>:
+    Label:
+        canvas.before:
+            Color:
+                rgba: 1,1,1,1
+            Rectangle:
+                pos: 0,1
+                size: self.size
+    Camera:
+        pos_hint: {"center_x":0.335,"center_y":0.57}
+        id: camera
+        size_hint : 0.76, 0.432
+        resolution: (1920, 1080)
+        play: True 
+
+    Image:
+        source: "./data/setsumei2.jpg"
+        pos_hint: {"center_x":0.85,"center_y":0.85}
+        size_hint: 0.37, 0.37
+
+    Image:
+        source: "./data/odai1.jpg"
+        pos_hint: {"center_x":0.835,"center_y":0.6}
+        size_hint: 0.43, 0.43
+
+    Button:
+        pos_hint: {"center_x":0.5,"center_y":0.1}
+        text:   "かんせい！"
+        background_color: (2.9, 0.3, 0, 0.9)
+        font_size:  40
+        size_hint: 0.39, 0.13
+        on_press: root.button_press()
+        on_press: root.export_to_png('./data/tsumiki.png')
+        on_press: app.root.change_disp_hantei()

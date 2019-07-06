@@ -1,0 +1,22 @@
+#タイトル画面
+<TitleScreen>:
+    #ボタン
+    Button:
+        #ボタンを押した時の処理
+        on_press: root.manager.current = "other"
+        pos_hint: {"center_x":0.5,"center_y":0.5}
+        size_hint: 0.5, 0.3
+        text:   "Other"
+        font_size:  50
+        background_color: (1.0, 1.0, 1.0, 1.0)
+
+#もう一つの画面
+<OtherScreen>:
+    #ボタン
+    Button:
+        on_press: root.manager.current = "title"
+        pos_hint: {"center_x":0.5,"center_y":0.5}
+        size_hint: 0.5, 0.3
+        font_size:  50
+        text:   "Title"
+        background_color: (1.0, 1.0, 1.0, 1.0)
