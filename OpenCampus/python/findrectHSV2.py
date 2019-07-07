@@ -1,8 +1,8 @@
 #映像から特定色を認識し、範囲の外接矩形を取り囲む
 import cv2
 import numpy as np
-#import matplotlib.pyplot as plt
-#from matplotlib.patches import Polygon
+import matplotlib.pyplot as plt
+from matplotlib.patches import Polygon
 
 #三角(赤)
 def find_rect_of_target_color1(image):
@@ -10,10 +10,10 @@ def find_rect_of_target_color1(image):
     h = hsv[:, :, 0]
     s = hsv[:, :, 1]
     v = hsv[:, :, 2]
-    mask = np.zeros(h.shape, dtype=np.uint8)
-    mask[((h < 15) | (h > 140)) & (s > 120) & (v > 120)] = 250
+    mask = np.zeros(h.shape, dtype=np.uint8)#マスクデータ生成
+    mask[((h < 10) | (h > 245)) & (s > 120) & (v > 120)] = 250
     #輪郭抽出
-    _, contours, _ = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    contours, _ = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     #面積が小さい輪郭を削除
     #area = img.shape[0] * img.shape[1]
     #contours = list(filter(lambda cnt: 1 < cv2.contourArea(cnt), contours))
@@ -33,7 +33,7 @@ def find_rect_of_target_color5(image):
     mask = np.zeros(h.shape, dtype=np.uint8)
     mask[((h > 0) & (h < 15)) & (s > 50) & (v < 220)] = 8
     #輪郭抽出
-    _, contours, _ = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    contours, _ = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     rects5 = []
     for contour in contours:
         approx = cv2.convexHull(contour)
@@ -50,7 +50,7 @@ def find_rect_of_target_color2(image):
     mask = np.zeros(h.shape, dtype=np.uint8)
     mask[((h > 20) & (h < 40)) & (s > 100) & (v > 200)] = 30
     #輪郭抽出
-    _, contours, _ = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    contours, _ = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     rects2 = []
     for contour in contours:
         approx = cv2.convexHull(contour)
@@ -67,7 +67,7 @@ def find_rect_of_target_color3(image):
     mask = np.zeros(h.shape, dtype=np.uint8)
     mask[((h > 150) & (h < 180)) & (s > 230) & (v < 200)] = 165
     #輪郭抽出
-    _, contours, _ = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    contours, _ = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     rects3 = []
     for contour in contours:
         approx = cv2.convexHull(contour)
@@ -84,7 +84,7 @@ def find_rect_of_target_color4(image):
     mask = np.zeros(h.shape, dtype=np.uint8)
     mask[((h > 120) & (h < 150)) & (s > 80) & (v < 100)] = 120
     #輪郭抽出
-    _, contours, _ = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    contours, _ = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     rects4 = []
     for contour in contours:
         approx = cv2.convexHull(contour)
@@ -103,7 +103,7 @@ def find_rect_of_target_color6(image):
     mask = np.zeros(h.shape, dtype=np.uint8)
     mask[((h > 177) & (h < 200)) & (s > 150) & (v < 150)] = 180
     #輪郭抽出
-    _, contours, _ = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    contours, _ = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     rects6 = []
     for contour in contours:
         approx = cv2.convexHull(contour)
@@ -115,7 +115,7 @@ def find_rect_of_target_color6(image):
 def hantei():
     #img = cv2.imread('./back.jpg')
     img = cv2.imread('./data/img.png')
-
+    #img = cv2.imread('./odai1.jpg')
     #赤
     rects1 = find_rect_of_target_color1(img)
     if len(rects1) > 10:
@@ -129,7 +129,6 @@ def hantei():
         cx1 = rect[0]+(w1/2) #中心のx座標
         cy1 = rect[1]+(h1/2) #中心のy座標
         red = 1
-
         print('赤------------')
         print(str(red) + '個')
         print('縦 = ' + str(w1))
@@ -519,7 +518,7 @@ def hantei():
     #if k == ord('q'):
     #    cv2.destroyAllWindows()
     #if k == ord('s'):
-    cv2.imwrite('./data/findrect.jpg', img)
+    cv2.imwrite('./findrect.jpg', img)
     #    cv2.destroyAllWindows()
 
     return(count)
