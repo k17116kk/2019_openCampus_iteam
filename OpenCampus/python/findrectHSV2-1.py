@@ -1,144 +1,123 @@
 #映像から特定色を認識し、範囲の外接矩形を取り囲む
 import cv2
 import numpy as np
-#import matplotlib.pyplot as plt
-#from matplotlib.patches import Polygon
+import matplotlib.pyplot as plt
+from matplotlib.patches import Polygon
 
-#H1,H2,AND OR,SMAX,V,MAX OR MIN,NUM
-#2  >:TRUE  <:FALSE
-#5  AND:True  OR:False
-class find_rect_of_target():
-    #三角(赤)
-    h = [];
-    s = [];
-    v = [];
-    def mask_num(self,mask,h):
-        return mask;
+#三角(赤)
+def find_rect_of_target_color1(image):
+    hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV_FULL)
+    h = hsv[:, :, 0]
+    s = hsv[:, :, 1]
+    v = hsv[:, :, 2]
+    mask = np.zeros(h.shape, dtype=np.uint8)#マスクデータ生成
+    mask[((h < 10) | (h > 245)) & (s > 120) & (v > 120)] = 250
+    #輪郭抽出
+    contours, _ = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    #面積が小さい輪郭を削除
+    #area = img.shape[0] * img.shape[1]
+    #contours = list(filter(lambda cnt: 1 < cv2.contourArea(cnt), contours))
+    rects1 = []
+    for contour in contours:
+      approx = cv2.convexHull(contour)
+      rect = cv2.boundingRect(approx)
+      rects1.append(np.array(rect))
+    return rects1
+
+#長方形(茶)
+def find_rect_of_target_color5(image):
+    hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV_FULL)
+    h = hsv[:, :, 0]
+    s = hsv[:, :, 1]
+    v = hsv[:, :, 2]
+    mask = np.zeros(h.shape, dtype=np.uint8)
+    mask[((h > 0) & (h < 15)) & (s > 50) & (v < 220)] = 8
+    #輪郭抽出
+    contours, _ = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    rects5 = []
+    for contour in contours:
+        approx = cv2.convexHull(contour)
+        rect = cv2.boundingRect(approx)
+        rects5.append(np.array(rect))
+    return rects5
+
+#半円(黄)
+def find_rect_of_target_color2(image):
+    hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV_FULL)
+    h = hsv[:, :, 0]
+    s = hsv[:, :, 1]
+    v = hsv[:, :, 2]
+    mask = np.zeros(h.shape, dtype=np.uint8)
+    mask[((h > 20) & (h < 40)) & (s > 100) & (v > 200)] = 30
+    #輪郭抽出
+    contours, _ = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    rects2 = []
+    for contour in contours:
+        approx = cv2.convexHull(contour)
+        rect = cv2.boundingRect(approx)
+        rects2.append(np.array(rect))
+    return rects2
+
+#長方形(青)
+def find_rect_of_target_color3(image):
+    hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV_FULL)
+    h = hsv[:, :, 0]
+    s = hsv[:, :, 1]
+    v = hsv[:, :, 2]
+    mask = np.zeros(h.shape, dtype=np.uint8)
+    mask[((h > 150) & (h < 180)) & (s > 230) & (v < 200)] = 165
+    #輪郭抽出
+    contours, _ = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    rects3 = []
+    for contour in contours:
+        approx = cv2.convexHull(contour)
+        rect = cv2.boundingRect(approx)
+        rects3.append(np.array(rect))
+    return rects3
+
+#正方形(緑)
+def find_rect_of_target_color4(image):
+    hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV_FULL)
+    h = hsv[:, :, 0]
+    s = hsv[:, :, 1]
+    v = hsv[:, :, 2]
+    mask = np.zeros(h.shape, dtype=np.uint8)
+    mask[((h > 120) & (h < 150)) & (s > 80) & (v < 100)] = 120
+    #輪郭抽出
+    contours, _ = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    rects4 = []
+    for contour in contours:
+        approx = cv2.convexHull(contour)
+        rect = cv2.boundingRect(approx)
+        rects4.append(np.array(rect))
+    return rects4
 
 
-    def find_rect_of_target(self,image):
-        hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV_FULL)
-        self.h = hsv[:, :, 0]
-        self.s = hsv[:, :, 1]
-        self.v = hsv[:, :, 2]
-        mask = np.zeros(self.h.shape, dtype=np.uint8)
 
-        mask = self.mask_num(mask)
-
-        #輪郭抽出
-        contours, _ = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-        #面積が小さい輪郭を削除
-        #area = img.shape[0] * img.shape[1]
-        #contours = list(filter(lambda cnt: 1 < cv2.contourArea(cnt), contours))
-        rects = []
-        for contour in contours:
-          approx = cv2.convexHull(contour)
-          rect = cv2.boundingRect(approx)
-          rects.append(np.array(rect))
-        return rects
-
-class color1(find_rect_of_target ):
-
-    def mask_num(self,mask):
-        mask[((self.h < 10) | (self.h > 245)) & (self.s > 120) & (self.v > 120)] = 250
-        return mask;
-
-
-class color2(find_rect_of_target ):
-    def mask_num(self,mask):
-        mask[((self.h > 20) & (self.h < 40)) & (self.s > 100) & (self.v > 200)] = 30
-        return mask;
-
-
-class color3(find_rect_of_target ):
-    def mask_num(self,mask):
-        mask[((self.h > 150) & (self.h < 180)) & (self.s > 230) & (self.v < 200)] = 165
-        return mask;
-
-
-class color4(find_rect_of_target ):
-    def mask_num(self,mask):
-        mask[((self.h > 120) & (self.h < 150)) & (self.s > 80) & (self.v < 100)] = 120
-        return mask;
-
-
-class color5(find_rect_of_target ):
-    def mask_num(self,mask):
-        mask[((self.h > 0) & (self.h < 15)) & (self.s > 50) & (self.v < 220)] = 8
-        return mask;
-
-
-class color6(find_rect_of_target ):
-    def mask_num(self,mask):
-        mask[((self.h > 177) & (self.h < 200)) & (self.s > 150) & (self.v < 150)] = 180
-        return mask;
-
-
-class put_result_color():
-    def __init__():
-        img = cv2.imread('./img.jpg')
-        w1 = 0
-        h1 = 0
-        asp1 = 0
-        s1 = 0
-        cx1 = 0
-        cy1 = 0
-        red = 0
-
-class hantei_pr():
-        #img = cv2.imread('./back.jpg')
-        img = cv2.imread('./img.jpg')
-
-        #赤
-        rects = color1().find_rect_of_target(img)
-        if len(rects) > 10:
-            rect = max(rects, key=(lambda x: x[2] * x[3]))
-            cv2.rectangle(img, tuple(rect[0:2]),
-            tuple(rect[0:2] + rect[2:4]), (0, 0, 255), 2)
-                                         # B  G   R
-            w,h = rect[2],rect[3] # 幅と高さ
-            s = w * h   # 面積
-            asp = w / h # アスペクト比
-            cx = rect[0]+(w/2) #中心のx座標
-            cy = rect[1]+(h/2) #中心のy座標
-            red = 1
-
-            print('赤------------')
-            print(str(red) + '個')
-            print('縦 = ' + str(w))
-            print('横 = ' + str(h))
-            print('アスペクト比 = ' + str(asp))
-            print('面積 = ' + str(s))
-            print('中心座標 = (' + str(cx) + ',' + str(cy) + ')')
-
-            cv2.putText(img, "area  : " + str(s),
-            (0, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255))
-            cv2.putText(img, "aspect: " + str(asp),
-            (0, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255))
-        else: #なかった場合
-            w = 0
-            h = 0
-            asp = 0
-            s = 0
-            cx = 0
-            cy = 0
-            red = 0
-            print('赤------------')
-            print(str(red) + '個')
-            print('縦 = ' + str(w))
-            print('横 = ' + str(h))
-            print('アスペクト比 = ' + str(asp))
-            print('面積 = ' + str(s))
-            print('中心座標 = (' + str(cx) + ',' + str(cy) + ')')
-
+#直方体(紫)
+def find_rect_of_target_color6(image):
+    hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV_FULL)
+    h = hsv[:, :, 0]
+    s = hsv[:, :, 1]
+    v = hsv[:, :, 2]
+    mask = np.zeros(h.shape, dtype=np.uint8)
+    mask[((h > 177) & (h < 200)) & (s > 150) & (v < 150)] = 180
+    #輪郭抽出
+    contours, _ = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    rects6 = []
+    for contour in contours:
+        approx = cv2.convexHull(contour)
+        rect = cv2.boundingRect(approx)
+        rects6.append(np.array(rect))
+    return rects6
 
 #if __name__ == "__main__":
 def hantei():
     #img = cv2.imread('./back.jpg')
-    img = cv2.imread('./img.jpg')
-
+    img = cv2.imread('./data/img.png')
+    #img = cv2.imread('./odai1.jpg')
     #赤
-    rects1 = color1().find_rect_of_target(img)
+    rects1 = find_rect_of_target_color1(img)
     if len(rects1) > 10:
         rect = max(rects1, key=(lambda x: x[2] * x[3]))
         cv2.rectangle(img, tuple(rect[0:2]),
@@ -150,7 +129,6 @@ def hantei():
         cx1 = rect[0]+(w1/2) #中心のx座標
         cy1 = rect[1]+(h1/2) #中心のy座標
         red = 1
-
         print('赤------------')
         print(str(red) + '個')
         print('縦 = ' + str(w1))
@@ -181,7 +159,7 @@ def hantei():
 
 
     #黄
-    rects2 = color2().find_rect_of_target(img)
+    rects2 = find_rect_of_target_color2(img)
     if len(rects2) > 10:
         rect = max(rects2, key=(lambda x: x[2] * x[3]))
         cv2.rectangle(img, tuple(rect[0:2]),
@@ -223,7 +201,7 @@ def hantei():
         print('中心座標 = (' + str(cx2) + ',' + str(cy2) + ')')
 
     #青
-    rects3 = color3().find_rect_of_target(img)
+    rects3 = find_rect_of_target_color3(img)
     if len(rects3) > 100:
         rect = max(rects3, key=(lambda x: x[2] * x[3]))
         cv2.rectangle(img, tuple(rect[0:2]),
@@ -265,7 +243,7 @@ def hantei():
         print('中心座標 = (' + str(cx3) + ',' + str(cy3) + ')')
 
     #緑
-    rects4 = color4().find_rect_of_target(img)
+    rects4 = find_rect_of_target_color4(img)
     if len(rects4) > 10:
         rect = max(rects4, key=(lambda x: x[2] * x[3]))
         cv2.rectangle(img, tuple(rect[0:2]),
@@ -307,7 +285,7 @@ def hantei():
         print('中心座標 = (' + str(cx4) + ',' + str(cy4) + ')')
 
     #茶
-    rects5 = color5().find_rect_of_target(img)
+    rects5 = find_rect_of_target_color5(img)
     if len(rects5) > 10:
         rect = max(rects5, key=(lambda x: x[2] * x[3]))
         cv2.rectangle(img, tuple(rect[0:2]),
@@ -349,7 +327,7 @@ def hantei():
         print('中心座標 = (' + str(cx5) + ',' + str(cy5) + ')')
 
     #紫
-    rects6 = color6().find_rect_of_target(img)
+    rects6 = find_rect_of_target_color6(img)
     if len(rects6) > 10:
         rect = max(rects6, key=(lambda x: x[2] * x[3]))
         cv2.rectangle(img, tuple(rect[0:2]),
