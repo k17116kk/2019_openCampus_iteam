@@ -38,37 +38,46 @@ class find_rect_of_target():
         return rects
 
 class color1(find_rect_of_target ):
-
+    #赤
+    #HSV = 256;1256;256
     def mask_num(self,mask):
-        mask[((self.h < 10) | (self.h > 245)) & (self.s > 120) & (self.v > 120)] = 250
+        #mask[((self.h < 15) & (self.h > 0)) & (self.s > 220) & (self.v > 120)] = 250
+        mask[((self.h < 10) | (self.h > 250)) & (self.s > 210)] = 250
         return mask;
 
 
 class color2(find_rect_of_target ):
+    #黄色
     def mask_num(self,mask):
         mask[((self.h > 20) & (self.h < 40)) & (self.s > 100) & (self.v > 200)] = 30
         return mask;
 
 
 class color3(find_rect_of_target ):
+    #青
     def mask_num(self,mask):
         mask[((self.h > 150) & (self.h < 180)) & (self.s > 230) & (self.v < 200)] = 165
         return mask;
 
 
 class color4(find_rect_of_target ):
+    #緑
     def mask_num(self,mask):
-        mask[((self.h > 120) & (self.h < 150)) & (self.s > 80) & (self.v < 100)] = 120
+        #mask[((self.h > 120) & (self.h < 150)) & (self.s > 80) & (self.v < 100)] = 120
+        mask[((self.h > 120) & (self.h < 140)) & (self.s > 30)] = 120
         return mask;
 
 
 class color5(find_rect_of_target ):
+    #茶
     def mask_num(self,mask):
-        mask[((self.h > 0) & (self.h < 15)) & (self.s > 50) & (self.v < 220)] = 8
+        #mask[((self.h > 0) & (self.h < 15)) & (self.s > 50) & (self.v < 220)] = 8
+        mask[((self.h > 10) & (self.h < 25)) & (self.s > 50) & (self.s < 40) ] = 8
         return mask;
 
 
 class color6(find_rect_of_target ):
+    #紫
     def mask_num(self,mask):
         mask[((self.h > 177) & (self.h < 200)) & (self.s > 150) & (self.v < 150)] = 180
         return mask;
@@ -135,7 +144,7 @@ class put_result_color():
 #if __name__ == "__main__":
 def hantei():
     #img = cv2.imread('./back.jpg')
-    img = cv2.imread('./data/img.jpg')
+    img = cv2.imread('./data/case/2930.jpg')
 
     #赤
     rects1 = color1().find_rect_of_target(img)
