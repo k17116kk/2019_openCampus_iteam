@@ -1,0 +1,31 @@
+#:kivy 2.0.0
+#:import kivy kivy
+#:import win kivy.core.window
+
+FloatLayout:
+    select_btn : btn
+    canvas.before:
+        Rectangle:
+            # self here refers to the widget i.e BoxLayout
+            pos: self.pos
+            size: self.size
+    Label:
+        id: colorLab
+        #text: "agshjafesgkhaf"
+        color: 0,0,0,1
+        size_hint: 0.5, 0.05
+        pos_hint: {"x":0,"center_y":0.965} 
+    TextInput:
+        id: txt
+        size_hint: 0.8, 0.05
+        pos_hint: {"center_x":0.42,"center_y":0.9} 
+    Button:
+        size_hint: 0.15, 0.05
+        pos_hint: {"center_x":0.9,"center_y":0.9}  
+        text: "Button"
+        id: btn
+    Image:
+        id: img
+        #source: './case/68.jpg'
+        #pos_hint: {"center_x":0.0,"center_y":0.0}
+        size_hint: 0.5,0.5
