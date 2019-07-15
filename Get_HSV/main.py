@@ -42,8 +42,6 @@ class get_hsvApp(App):
         self.root.ids["img"].source = img_source
         self.root.ids["img"].pos_hint = {"center_x":0.5,"center_y":0.5}
 
-        print (self.root.ids["img"].height)
-
         global flg 
         flg = True
 
@@ -62,15 +60,20 @@ class get_hsvApp(App):
             if (p[0] > 480) and (p[0] < (i_width + 480)) and (420 < p[1]) and (p[1] < (420 + i_height)) :
                 #print(img_hsv[i_height - (int(p[1]) - 420),int(p[0]) - 480,0])
                 hsv = img_hsv[i_height - (int(p[1]) - 420),int(p[0]) - 480]
+                bgr = img_cv[i_height - (int(p[1]) - 420),int(p[0]) - 480]
                 h = str(hsv[0])
                 s = str(hsv[1])
                 v = str(hsv[2])
-                pass
+                b = str(bgr[0])
+                g = str(bgr[1])
+                r = str(bgr[2])
             else:
                 h = s = v = str(0)
+                b = g= r = str(0)
 
-            
-            self.root.ids["colorLab"].text = "H : " + h + ", S : " + s + ", V : " + v
+            hsv_str =  "H : " + h + ", S : " + s + ", V : " + v
+            bgr_str =  "B : " + b + ", G : " + r + ", R : " + r
+            self.root.ids["colorLab"].text = hsv_str + "\n" + bgr_str
             #print(h)
 
         
