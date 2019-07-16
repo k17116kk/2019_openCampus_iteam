@@ -42,7 +42,7 @@ class color1(find_rect_of_target ):
     #HSV = 256;1256;256
     def mask_num(self,mask):
         #mask[((self.h < 15) & (self.h > 0)) & (self.s > 220) & (self.v > 120)] = 250
-        mask[((self.h < 10) | (self.h > 250)) & (self.s > 210)] = 250
+        mask[((self.h < 5) | (self.h > 250)) & (self.s > 210)] = 250
         return mask;
 
 
@@ -64,7 +64,8 @@ class color4(find_rect_of_target ):
     #緑
     def mask_num(self,mask):
         #mask[((self.h > 120) & (self.h < 150)) & (self.s > 80) & (self.v < 100)] = 120
-        mask[((self.h > 120) & (self.h < 140)) & (self.s > 30)] = 120
+        mask[((self.h > 113) & (self.h < 143)) & (self.s > 0)] = 120
+        #cv2.imwrite("./data/dst.jpg",mask)
         return mask;
 
 
@@ -72,7 +73,7 @@ class color5(find_rect_of_target ):
     #茶
     def mask_num(self,mask):
         #mask[((self.h > 0) & (self.h < 15)) & (self.s > 50) & (self.v < 220)] = 8
-        mask[((self.h > 10) & (self.h < 25)) & (self.s > 50) & (self.s < 40) ] = 8
+        mask[((self.h > 5) & (self.h < 18)) & (self.s > 140) & (self.s < 210) ] = 8
         return mask;
 
 
@@ -143,8 +144,9 @@ class put_result_color():
 
 #if __name__ == "__main__":
 def hantei():
-    #img = cv2.imread('./back.jpg')
-    img = cv2.imread('./data/case/2930.jpg')
+    img = cv2.imread('./data/img.png')
+    #img = cv2.imread('./data/case/68.jpg')
+    #img = cv2.imread('./data/case/4727.jpg')
 
     #赤
     rects1 = color1().find_rect_of_target(img)
@@ -527,7 +529,7 @@ def hantei():
     print(count)
     #アスペクト比
     if (asp1 >= 1.8 and asp1<=2.0 and asp2 == 0.0 and asp3 == 0 and
-        asp4 >= 0.87 and asp4<=1.0 and asp5 >= 4 and asp5 <= 4.40 and asp6 == 0):
+        asp4 >= 0.87 and asp4<=1.0 and asp5 >= 3. and asp5 <= 4.70 and asp6 == 0):
         count = count + 2
     print(count)
     #面積

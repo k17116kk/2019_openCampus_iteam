@@ -35,6 +35,8 @@ class MainRoot(FloatLayout):
     hantei = None
     zannen = None
 
+    source_h = "./data/siro.jpg"
+
     def __init__(self, **kwargs):
         # 起動時に各画面を作成して使い回す
         self.title = Factory.Title()
@@ -67,7 +69,7 @@ class MainRoot(FloatLayout):
     def change_disp_zannen(self):
         self.clear_widgets()
         self.add_widget(self.zannen)
-        
+
 
 
 class MainApp(App):

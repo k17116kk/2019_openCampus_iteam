@@ -34,7 +34,7 @@ class get_hsvApp(App):
         file_n = self.root.ids["txt"].text
         img_source = "./case/"+file_n;
 
-        global img_cv 
+        global img_cv
         img_cv = cv2.imread(img_source)
 
         img_width = img_cv.shape[1]
@@ -43,7 +43,7 @@ class get_hsvApp(App):
         self.root.ids["img"].source = img_source
         self.root.ids["img"].pos_hint = {"center_x":0.5,"center_y":0.5}
 
-        global flg 
+        global flg
         flg = True
 
 
@@ -62,7 +62,7 @@ class get_hsvApp(App):
                 #print(img_hsv[i_height - (int(p[1]) - 420),int(p[0]) - 480,0])
                 hsv = img_hsv[i_height - (int(p[1]) - 420),int(p[0]) - 480]
                 bgr = img_cv[i_height - (int(p[1]) - 420),int(p[0]) - 480]
-                h = str(hsv[0])
+                h = str(hsv[0]/0.7)
                 s = str(hsv[1])
                 v = str(hsv[2])
                 b = str(bgr[0])
@@ -77,7 +77,7 @@ class get_hsvApp(App):
             self.root.ids["colorLab"].text = hsv_str + "\n" + bgr_str
             #print(h)
 
-        
+
 
     def build(self):
         root = self.root
@@ -92,4 +92,3 @@ if __name__ == '__main__':
 
     runMain = get_hsvApp()
     runMain.run()
-
