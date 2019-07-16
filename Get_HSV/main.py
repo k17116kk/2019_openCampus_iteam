@@ -23,6 +23,7 @@ from kivy.lang import Builder
 
 class get_hsvApp(App):
     file_n = ""
+    a = 1
     global flg
     flg = False
 
