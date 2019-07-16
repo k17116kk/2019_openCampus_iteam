@@ -4,6 +4,7 @@
 
     Widget:
         on_size: root.Size_Change()
+        
 
     #テキスト
     Label:
@@ -15,8 +16,6 @@
         font_size: 60
         #背景設定
         canvas.before:
-            Color:
-                rgba: 1,1,1,1
             Rectangle:
                 pos: 0,1
                 size: self.size
@@ -53,6 +52,10 @@
         background_color: (3, 1.5, 0.3, 1)
         font_size:  30
         size_hint: 0.3, 0.1
+
+        canvas:
+            Rectangle:
+                source: "./data/background_tmp.jpg"
 
     Image:
         source: "./data/daimei.jpg"

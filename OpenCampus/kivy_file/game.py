@@ -5,6 +5,7 @@ from kivy.core.window import Window
 from python import findrectHSV2
 #import ..python.findrectHSV2
 import cv2
+from .hantei import Hantei
 
 class Game(FloatLayout):
 
@@ -38,7 +39,7 @@ class Game(FloatLayout):
 
         if (i >= 5):
             #print ("正解!!")
-            flag = True;
+            Hantei.judge = True;
             hantei = cv2.imread(path+"seikai.jpg")
             cv2.imwrite(path+"hantei.jpg",hantei)
 

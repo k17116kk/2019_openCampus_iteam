@@ -10,7 +10,7 @@ class Hantei(FloatLayout):
 
     source = StringProperty('./data/siro.jpg')
 
-    judge = Game.flag
+    judge = False
 
     def Size_Change(self):
         width = self.width
