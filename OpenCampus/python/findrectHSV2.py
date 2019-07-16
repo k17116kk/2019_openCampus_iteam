@@ -1,4 +1,4 @@
-#映像から特定色を認識し、範囲の外接矩形を取り囲む
+ #映像から特定色を認識し、範囲の外接矩形を取り囲む
 import cv2
 import numpy as np
 #import matplotlib.pyplot as plt
