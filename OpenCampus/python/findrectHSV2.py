@@ -145,7 +145,7 @@ class put_result_color():
 #if __name__ == "__main__":
 def hantei():
     img = cv2.imread('./data/img.png')
-    #img = cv2.imread('./data/case/68.jpg')
+    #img = cv2.imread('./data/case/3562.jpg')
     #img = cv2.imread('./data/case/4727.jpg')
 
     #赤
@@ -529,7 +529,7 @@ def hantei():
     print(count)
     #アスペクト比
     if (asp1 >= 1.8 and asp1<=2.0 and asp2 == 0.0 and asp3 == 0 and
-        asp4 >= 0.87 and asp4<=1.0 and asp5 >= 3. and asp5 <= 4.70 and asp6 == 0):
+        asp4 >= 0.87 and asp4<=1.2 and asp5 >= 3. and asp5 <= 4.70 and asp6 == 0):
         count = count + 2
     print(count)
     #面積
