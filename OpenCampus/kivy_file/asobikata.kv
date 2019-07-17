@@ -1,12 +1,18 @@
 
 #遊び方説明画面
-<Asobikata@FloatLayout>:
+
+<Asobikata>:
+
+    Widget:
+        on_size: root.Size_Change()
+
 
     Label:
-        pos_hint: {"center_x":0.264,"center_y":0.5}
-        text:   ""
-        color:  0.2,0.2,0.2,1
-        font_size: 32
+        id: la1
+        pos_hint: {"center_x":0.5,"center_y":0.85}
+        text:   "あそびかたの説明をするよ！"
+        color:  1.0,0.5,0.0,1
+        font_size: 60
         canvas.before:
             Color:
                 rgba: 1,0,1.0,1.0,1
@@ -14,7 +20,21 @@
                 pos: 0,1
                 size: self.size
 
+    Label:
+        id: la2
+        pos_hint: {"center_x":0.25,"center_y":0.5}
+        text:   "    お題の画像と\n\n  同じ形の積み木を\n\n組み立ててかんせいを\n\n     目指そう！！"
+        color:  0.4,0.4,0.9,1
+        font_size: 50
+         #canvas.before:
+         #     Color:
+         #         rgba: 1,0,1.0,1.0,1
+         #     Rectangle:
+         #         pos: 0,1
+         #         size: self.size
+
     Button:
+        id: btn
         on_press: app.root.change_disp_title()
         pos_hint: {"center_x":0.5,"center_y":0.13}
         text:   "もどる"
@@ -27,12 +47,12 @@
         pos_hint: {"center_x":0.735,"center_y":0.5}
         size_hint: 0.54, 0.54
 
-    Image:
-        source: "./data/setsumei1.jpg"
-        pos_hint: {"center_x":0.5,"center_y":0.87}
-        size_hint: 0.8, 0.8
+    # Image:
+    #     source: "./data/setsumei1.jpg"
+    #     pos_hint: {"center_x":0.5,"center_y":0.87}
+    #     size_hint: 0.8, 0.8
 
-    Image:
-        source: "./data/setsumei.jpg"
-        pos_hint: {"center_x":0.25,"center_y":0.5}
-        size_hint: 0.5, 0.5
+    # Image:
+    #     source: "./data/setsumei.jpg"
+    #     pos_hint: {"center_x":0.25,"center_y":0.5}
+    #     size_hint: 0.5, 0.5
