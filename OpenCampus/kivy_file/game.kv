@@ -22,6 +22,7 @@
     Camera:
         pos_hint: {"center_x":0.335,"center_y":0.57}
         id: Camera
+        index: 1
         size_hint : 0.7, 0.432
         resolution: (1920, 1080)
         play: True
@@ -43,6 +44,6 @@
         background_color: (2.9, 0.3, 0, 0.9)
         font_size:  40
         size_hint: 0.39, 0.13
-        on_press: root.button_press()
+        on_press: root.button_press(app.root)
         on_press: root.export_to_png('./data/tsumiki.png')
         on_press: app.root.change_disp_hantei()

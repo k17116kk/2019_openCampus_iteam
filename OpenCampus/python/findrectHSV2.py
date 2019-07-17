@@ -64,7 +64,7 @@ class color4(find_rect_of_target ):
     #緑
     def mask_num(self,mask):
         #mask[((self.h > 120) & (self.h < 150)) & (self.s > 80) & (self.v < 100)] = 120
-        mask[((self.h > 113) & (self.h < 143)) & (self.s > 0)] = 120
+        mask[((self.h > 113) & (self.h < 143)) & (self.s > 20)] = 120
         #cv2.imwrite("./data/dst.jpg",mask)
         return mask;
 
