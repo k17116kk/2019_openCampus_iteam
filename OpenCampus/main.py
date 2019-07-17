@@ -26,6 +26,7 @@ Builder.load_file('./kivy_file/zannen.kv')
 from kivy_file.game import *
 from kivy_file.hantei import *
 from kivy_file.title import *
+from kivy_file.asobikata import *
 #from python.findrectHSV2 import *
 
 class MainRoot(FloatLayout):
