@@ -12,12 +12,37 @@ class Game(FloatLayout):
 
     flag = False
 
+    time = 0
+
+    timetx = ""
+
     def Size_Change(self):
         width = self.width
         height = self.height
 
         for k in self.ids:
             self.ids[k].font_size = width * 0.03
+
+    def count_timer(self,dt):
+        self.time += 1
+        td = datetime.timedelta(hours=0,minutes=0,seconds=self.time)
+        self.timetx = str(td)
+        self.ids["clock"].text = self.timetx
+    
+    def change_time(self,root):
+        if self.time == 0:
+            root.hantei.ids["game_time"].text = "タイム  :  0:00:00"
+        else:
+            root.hantei.ids["game_time"].text = "タイム  :  "+ self.timetx
+            self.time = 0
+
+    def start_timer(self):
+        self.ids["clock"].text = "0:00:00"
+        print(self.time)
+        Clock.schedule_interval(self.count_timer, 1.0)
+
+    def stop_timer(self):
+        Clock.unschedule(self.count_timer)
 
     def button_press(self,root):
 
