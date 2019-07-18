@@ -10,7 +10,7 @@ from kivy.uix.floatlayout import FloatLayout
 
 #日本語フォント適応
 from kivy.core.text import LabelBase, DEFAULT_FONT
-LabelBase.register(DEFAULT_FONT, "./data/ipaexg.ttf")
+LabelBase.register(DEFAULT_FONT, "./data/TanukiMagic.ttf")
 
 # kvファイルを画面ごとに分離してバラで読み込む
 from kivy.lang import Builder
