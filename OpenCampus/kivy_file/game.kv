@@ -47,3 +47,10 @@
         on_press: root.button_press(app.root)
         on_press: root.export_to_png('./data/tsumiki.png')
         on_press: app.root.change_disp_hantei()
+
+    Label:
+        id:clock
+        pos_hint: {"center_x":0.335,"center_y":0.85}
+        text:   "0:00:00"
+        color:  1.000 ,0.6078 ,0.000, 1,0
+        font_size: 50
