@@ -45,7 +45,8 @@
         font_size:  40
         size_hint: 0.39, 0.13
         on_press: root.button_press(app.root)
-        on_press: root.export_to_png('./data/tsumiki.png')
+        on_press: root.stop_timer()
+        on_press: root.change_time(app.root)
         on_press: app.root.change_disp_hantei()
 
     Label:

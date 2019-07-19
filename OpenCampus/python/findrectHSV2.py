@@ -42,7 +42,7 @@ class color1(find_rect_of_target ):
     #HSV = 256;1256;256
     def mask_num(self,mask):
         #mask[((self.h < 15) & (self.h > 0)) & (self.s > 220) & (self.v > 120)] = 250
-        mask[((self.h < 5) | (self.h > 250)) & (self.s > 210)] = 250
+        mask[((self.h > 220) | (self.h < 7)) & (self.s > 180) ] = 250
         return mask;
 
 
@@ -73,7 +73,7 @@ class color5(find_rect_of_target ):
     #茶
     def mask_num(self,mask):
         #mask[((self.h > 0) & (self.h < 15)) & (self.s > 50) & (self.v < 220)] = 8
-        mask[((self.h > 5) & (self.h < 18)) & (self.s > 140) & (self.s < 210) ] = 8
+        mask[((self.h > 0) & (self.h < 15)) & (self.s > 100) & (self.s < 180) ] = 8
         return mask;
 
 
@@ -144,8 +144,8 @@ class put_result_color():
 
 #if __name__ == "__main__":
 def hantei():
-    #img = cv2.imread('./data/img.png')
-    img = cv2.imread('./data/case/4815.jpg')
+    img = cv2.imread('./data/img.png')
+    #img = cv2.imread('./data/case/3562.jpg')
     #img = cv2.imread('./data/case/4727.jpg')
 
     #赤
@@ -523,25 +523,33 @@ def hantei():
 
     #判定(デモ実装だけのため値は固定値になっている)
     #色の数
-    if (red == 1 and  blue == 0 and green == 1 and
-        purple == 0 and yellow  == 0 and brown == 1):
+    #if (red == 1 and  blue == 0 and green == 1 and
+    #    purple == 0 and yellow  == 0 and brown == 1):
+    if (red == 1 and   green == 1 and brown == 1):
         count = count + 3
     print(count)
     #アスペクト比
-    if (asp1 >= 1.8 and asp1<=2.0 and asp2 == 0.0 and asp3 == 0 and
-        asp4 >= 0.87 and asp4<=1.2 and asp5 >= 3. and asp5 <= 4.70 and asp6 == 0):
+    #if (asp1 >= 1.8 and asp1<=2.2 and asp2 == 0.0 and asp3 == 0 and
+    #    asp4 >= 0.87 and asp4<=1.2 and asp5 >= 3. and asp5 <= 4.70 and asp6 == 0):
+    if (asp1 >= 1.8 and asp1<=2.2 and
+        asp4 >= 0.87 and asp4<=1.2 and asp5 >= 3. and asp5 <= 5.00):
         count = count + 2
     print(count)
     #面積
-    if (his1 >= 26000 and his1 <= 28000 and his2 == 0 and his3 == 0 and
-        his4 >= 14000 and his4 <= 18000 and his5 >= 15500 and his5 <= 18000 and his6 == 0):
+    #if (his1 >= 26000 and his1 <= 28000 and his2 == 0 and his3 == 0 and
+    #    his4 >= 14000 and his4 <= 18000 and his5 >= 15500 and his5 <= 18000 and his6 == 0):
+    if (his1 >= 26000 and his1 <= 28000 and his4 >= 14000 and his4 <= 18000 and his5 >= 15500 and his5 <= 18000):
         count = count + 1
     print(count)
     #距離
-    if (hisax1 == 0 and hisax2 == 0 and hisax3 >= -49 and hisax3 <= 51 and
-        hisax4 >= -47 and hisax4<= 53 and hisax5 == 0 and
-        hisay1 == 0 and hisay2 == 0 and hisay3 >= -238.5 and hisay3 <= -138.5 and
-        hisay4 >= -142.5 and hisay4 <= -42.5 and hisay5 == 0):
+    #if (hisax1 == 0 and hisax2 == 0 and hisax3 >= -49 and hisax3 <= 51 and
+    #    hisax4 >= -47 and hisax4<= 53 and hisax5 == 0 and
+    #    hisay1 == 0 and hisay2 == 0 and hisay3 >= -238.5 and hisay3 <= -138.5 and
+    #    hisay4 >= -142.5 and hisay4 <= -42.5 and hisay5 == 0):
+    if (hisax3 >= -49 and hisax3 <= 51 and
+        hisax4 >= -47 and hisax4<= 53 and
+        hisay3 >= -238.5 and hisay3 <= -138.5 and
+        hisay4 >= -142.5 and hisay4 <= -42.5):
         count = count + 1
     print(count)
 

@@ -7,11 +7,12 @@ from kivy.properties import StringProperty
 #import ..python.findrectHSV2
 import cv2
 from .hantei import Hantei
+from kivy.clock import Clock
+import datetime
 
 class Game(FloatLayout):
 
     flag = False
-
 
     time = 0
 
@@ -29,7 +30,7 @@ class Game(FloatLayout):
         td = datetime.timedelta(hours=0,minutes=0,seconds=self.time)
         self.timetx = str(td)
         self.ids["clock"].text = self.timetx
-
+    
     def change_time(self,root):
         if self.time == 0:
             root.hantei.ids["game_time"].text = "タイム  :  0:00:00"
