@@ -11,7 +11,7 @@ from .hantei import Hantei
 class Game(FloatLayout):
 
     flag = False
-
+    
     def Size_Change(self):
         width = self.width
         height = self.height

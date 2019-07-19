@@ -26,7 +26,7 @@ class find_rect_of_target():
         mask = self.mask_num(mask)
 
         #輪郭抽出
-        contours, _ = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+        _ ,contours, _ = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
         #面積が小さい輪郭を削除
         #area = img.shape[0] * img.shape[1]
         #contours = list(filter(lambda cnt: 1 < cv2.contourArea(cnt), contours))
@@ -144,8 +144,8 @@ class put_result_color():
 
 #if __name__ == "__main__":
 def hantei():
-    #img = cv2.imread('./data/img.png')
-    img = cv2.imread('./data/case/4815.jpg')
+    img = cv2.imread('./data/img.png')
+    #img = cv2.imread('./data/case/3562.jpg')
     #img = cv2.imread('./data/case/4727.jpg')
 
     #赤
